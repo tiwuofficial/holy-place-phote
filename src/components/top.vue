@@ -19,6 +19,10 @@ export default {
 section {
   height: 100vh;
   width: 100vw;
+  background-image: url(../assets/img/top.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 h1 {
   font-weight: normal;
