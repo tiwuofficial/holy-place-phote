@@ -1,7 +1,7 @@
 <template>
   <section class="hero-header"  v-bind:style="{ backgroundImage: 'url(' + topImage +')' }">
     <section class="hero-header__layer">
-      <h1>Otak Holy Place Photo</h1>
+      <h1>Holy Place Photo</h1>
       <router-link to="/gallery" class="button">Gallery</router-link>
     </section>
   </section>
