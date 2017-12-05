@@ -8,28 +8,54 @@
         </ul>
       </nav>
     </header>
-    <!-- 表示の度ランダムで写真を表示する -->
     <h1>Gallery</h1>
-      <div v-for="(list, anim) in this.$store.state.gallery.list">
-        <div v-for="img in list">
-          <img v-bind:src="imgUrl('./' + anim + '/' + img)">
-        </div>
+    <section class="gallery-list">
+      <div v-for="img in this.list" :class="{ big:  BigList.indexOf(img) >= 0 }">
+        <img v-bind:src="hoge(img)">
       </div>
+    </section>
   </section>
 </template>
 
 <script>
-const images = require.context('../assets/img/', true, /\.jpg$/);
-
 export default {
   data() {
     return {
+      list: this.$store.state.imageList.keys(),
+      BigList: [],
     };
   },
   methods: {
     imgUrl(path) {
-      return images(path);
+      return this.$store.state.imageList.resolve(path);
     },
+    hoge(path) {
+      return this.$store.state.imageList(path);
+    },
+    random(array, num) {
+      const a = array;
+      const t = [];
+      const r = [];
+      let l = a.length;
+      let n = num < l ? num : l;
+      while (n-- > 0) {
+        const i = Math.random() * l | 0;
+        r[n] = t[i] || a[i];
+        --l;
+        t[i] = t[l] || a[l];
+      }
+      return r;
+    },
+  },
+  created() {
+    console.log(this.list);
+    for (let i = this.list.length - 1; i > 0; i--) {
+      const r = Math.floor(Math.random() * (i + 1));
+      const tmp = this.list[i];
+      this.list[i] = this.list[r];
+      this.list[r] = tmp;
+    }
+    this.BigList = this.random(this.list, 4);
   },
 };
 </script>
@@ -67,8 +93,23 @@ export default {
     text-decoration: none;
   }
 
+  .gallery-list {
+    display: grid;
+    grid-auto-rows: 260px;
+    grid-template-columns: repeat(auto-fit, 390px);
+    justify-content: center;
+    grid-row-gap: 20px;
+    grid-column-gap: 30px;
+    grid-auto-flow: dense;
+  }
+
   img {
-    width: 200px;
-    height: 200px;
+    object-fit: contain;
+    width: 100%;
+  }
+
+  .big {
+    grid-row: span 2;
+    grid-column: span 2;
   }
 </style>
