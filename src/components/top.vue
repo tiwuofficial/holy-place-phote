@@ -1,5 +1,5 @@
 <template>
-  <section class="hero-header">
+  <section class="hero-header"  v-bind:style="{ backgroundImage: 'url(' + topImage +')' }">
     <section class="hero-header__layer">
       <h1>Otak Holy Place Photo</h1>
       <router-link to="/gallery" class="button">Gallery</router-link>
@@ -11,6 +11,7 @@
 export default {
   data() {
     return {
+      topImage: this.$store.state.topImage('./top.jpg'),
     };
   },
 };
@@ -20,7 +21,6 @@ export default {
   .hero-header {
     height: 100vh;
     width: 100vw;
-    background-image: url(../assets/img/top.jpg);
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

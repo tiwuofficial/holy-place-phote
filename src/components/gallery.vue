@@ -11,7 +11,7 @@
     <h1>Gallery</h1>
     <section class="gallery-list">
       <div v-for="img in this.list" :class="{ big:  BigList.indexOf(img) >= 0 }">
-        <img v-bind:src="hoge(img)">
+        <img v-bind:src="imgUrl(img)">
       </div>
     </section>
   </section>
@@ -27,9 +27,6 @@ export default {
   },
   methods: {
     imgUrl(path) {
-      return this.$store.state.imageList.resolve(path);
-    },
-    hoge(path) {
       return this.$store.state.imageList(path);
     },
     random(array, num) {
