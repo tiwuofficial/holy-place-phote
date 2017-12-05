@@ -10,7 +10,7 @@
         </ul>
       </nav>
     </header>
-    <h1>Gallery</h1>
+    <h1>Chu-ni</h1>
     <section class="gallery-list">
       <div v-for="img in this.list" :class="{ big:  BigList.indexOf(img) >= 0 }">
         <img v-bind:src="imgUrl(img)">
@@ -47,13 +47,16 @@ export default {
     },
   },
   created() {
+    this.list = this.list.filter(function(element) {
+      return element.indexOf('chu-ni') > -1;
+    });
     for (let i = this.list.length - 1; i > 0; i--) {
       const r = Math.floor(Math.random() * (i + 1));
       const tmp = this.list[i];
       this.list[i] = this.list[r];
       this.list[r] = tmp;
     }
-    this.BigList = this.random(this.list, 4);
+    this.BigList = this.random(this.list, 1);
   },
 };
 </script>
