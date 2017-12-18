@@ -60,4 +60,13 @@ export default {
   .button:hover {
     background: rgba(255,255,255,.1);
   }
+
+  @media (max-width: 1000px) {
+    h1 {
+      top: 40%;
+    }
+    .button {
+      top: 80%;
+    }
+  }
 </style>

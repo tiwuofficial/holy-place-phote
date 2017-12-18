@@ -110,4 +110,14 @@ export default {
     grid-row: span 2;
     grid-column: span 2;
   }
+
+  @media (max-width: 1000px) {
+    .gallery-list {
+      display: block;
+      padding: 0 10px;
+    }
+    img {
+      margin-bottom: 10px;
+    }
+  }
 </style>
