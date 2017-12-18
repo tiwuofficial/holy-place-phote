@@ -1,7 +1,9 @@
 <template>
   <section class="hero-header"  v-bind:style="{ backgroundImage: 'url(' + topImage +')' }">
     <section class="hero-header__layer">
-      <h1>Holy Place Photo</h1>
+      <svg>
+          <text x="50%" y="50%" class="holy">Holy Place Photo</text>
+      </svg>
       <router-link to="/gallery" class="button">Gallery</router-link>
     </section>
   </section>
@@ -31,18 +33,6 @@ export default {
     background-color: rgba(74,74,74,.7);
   }
 
-  h1 {
-    font-weight: normal;
-    font-size: 60px;
-    color: #fff;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translateY(-50%) translateX(-50%);
-    transform: translateY(-50%) translateX(-50%);
-  }
-
   .button {
     position: absolute;
     top: 70%;
@@ -61,12 +51,71 @@ export default {
     background: rgba(255,255,255,.1);
   }
 
+  svg {
+    width: 500px;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translateY(-50%) translateX(-50%);
+    transform: translateY(-50%) translateX(-50%);
+  }
+
+  text {
+    text-anchor: middle;
+    font-size: 50px;
+    fill: none;
+    stroke: none;
+    stroke-dasharray: 150% 150%;
+    stroke-width: 1px;
+    -webkit-animation: stroke-offset 5s linear 2s forwards;
+          animation: stroke-offset 5s linear 2s forwards;
+  }
+
+  @-webkit-keyframes stroke-offset {
+    0% {
+      stroke-dashoffset: 150%;
+      stroke: white;
+      fill:transparent;
+    }
+    50% {
+      fill:transparent;
+      stroke: white;
+    }
+    100% {
+      stroke-dashoffset: 0%;
+      stroke: white;
+      fill: white;
+    }
+  }
+
+  @keyframes stroke-offset {
+    0% {
+      stroke-dashoffset: 150%;
+      stroke: white;
+      fill:transparent;
+    }
+    50% {
+      fill:transparent;
+      stroke: white;
+    }
+    100% {
+      stroke-dashoffset: 0%;
+      stroke: white;
+      fill: white;
+    }
+  }
+
   @media (max-width: 1000px) {
-    h1 {
-      top: 40%;
+    svg {
+      width: 290px;
+    }
+    text {
+      font-size: 37px;
     }
     .button {
       top: 80%;
     }
+
   }
 </style>
