@@ -2,7 +2,7 @@
   <section class="hero-header"  v-bind:style="{ backgroundImage: 'url(' + topImage +')' }">
     <section class="hero-header__layer">
       <svg>
-          <text x="50%" y="50%" class="holy">Holy Place Photo</text>
+          <text x="50%" y="50%" class="holy">Holy Place Photo!</text>
       </svg>
       <router-link to="/gallery" class="button">Gallery</router-link>
     </section>
