@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const workboxPlugin = require('workbox-webpack-plugin') 
 
 const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
@@ -116,7 +117,15 @@ const webpackConfig = merge(baseWebpackConfig, {
         to: config.build.assetsSubDirectory,
         ignore: ['.*']
       }
-    ])
+    ]),
+        new workboxPlugin({
+      cacheId: 'my-pwa',
+      globDirectory: config.build.assetsRoot,
+      globPatterns: ['**/*.{html,js,css}'],
+      swDest: path.join(config.build.assetsRoot, 'service-worker.js'),
+      skipWaiting: false,
+      clientsClaim: true
+    })
   ]
 })
 
