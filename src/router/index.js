@@ -7,7 +7,7 @@ import chuni from '@/components/chu-ni';
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
@@ -28,3 +28,9 @@ export default new Router({
     },
   ],
 });
+
+router.afterEach((to, from) => {
+  gtag('config', 'UA-68543693-4', {'page_path': to.path });
+})
+
+export default router;
